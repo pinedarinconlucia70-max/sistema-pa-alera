@@ -288,3 +288,113 @@ body {
     color: #1f618d;
     transform: translateX(4px); /* Se mueve un poco a la derecha al pasar el mouse */
 }
+
+/* Contenedor general para centrar formularios de edición */
+.contenedor-formulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+    background-color: #f4f6f9;
+    min-height: calc(100vh - 70px);
+}
+
+/* Tarjeta contenedora con sombra */
+.tarjeta-formulario {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 500px;
+}
+
+.tarjeta-formulario h2 {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/* Campos del formulario */
+.tarjeta-formulario .campo {
+    margin-bottom: 1.2rem;
+}
+
+.tarjeta-formulario label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #34495e;
+}
+
+.tarjeta-formulario input, 
+.tarjeta-formulario select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #dcdde1;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.tarjeta-formulario input:focus, 
+.tarjeta-formulario select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
+}
+
+/* Botones de acción organizados */
+.acciones-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+
+.acciones-form .btn {
+    flex: 1;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.acciones-form .btn:hover {
+    background-color: #2980b9;
+}
+
+.btn-cancelar {
+    flex: 1;
+    background-color: #e74c3c;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.2s;
+}
+
+.btn-cancelar:hover {
+    background-color: #c0392b;
+}
+.alerta-flotante {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}

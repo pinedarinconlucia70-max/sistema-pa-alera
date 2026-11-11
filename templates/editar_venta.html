@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Venta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+     <header class="navbar">
+        <h2>Editar Ventas</h2>
+        <nav>
+            <a href="{{ url_for('inicio') }}" class="btn-nav">Inicio</a>
+            <a href="{{ url_for('ventas') }}" class="btn-nav">Ventas</a>
+        </nav>
+    </header>
+
+    <main class="contenedor-formulario">
+        <div class="tarjeta-formulario">
+            <h2>Modificar Información</h2>
+
+        <form class="formulario" action="/ventas" method="POST">
+            <div class="campo">
+                <label for="fecha_venta">Fecha de Venta:</label>
+                <input type="date" id="fecha_venta" name="fecha_venta" value="{{venta.fecha_venta}}" required>
+            </div>
+            <div class="campo">
+                <label for="metodo_pago">Método de Pago:</label>
+                <select id="metodo_pago" name="metodo_pago" value="{{venta.metodo_pago}}" required>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Nequi">Nequi</option>
+                    <option value="Daviplata">Daviplata</option>
+                    <option value="Tarjeta">Tarjeta</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label for="total">Total ($):</label>
+                <input type="number" id="total" name="total" value="{{venta.total}}" required>
+            </div>
+
+            
+            <div class="campo">
+                <label for="id_usuario">Cliente (id_usuario - FK):</label>
+               <select id="id_usuario" name="id_usuario" required>
+            <option value="">Seleccione un usuario...</option>
+                {% for u in usuarios %}
+            <option value="{{ u.id_usuario }}" {% if u.id_usuario == venta.id_usuario %}selected{% endif %}>
+            {{ u.id_usuario }} - {{ u.nombre }}
+            </option>
+                    {% endfor %}
+            </select>
+            </div>
+
+          
+            <div class="campo">
+                <label for="id_producto">Producto (id_producto - FK):</label>
+                <select id="id_producto" name="id_producto" required>
+                    <option value="">Seleccione un producto...</option>
+                        {% for p in productos %}
+                    <option value="{{ p.id_producto }}" {% if p.id_producto == venta.id_producto %}selected{% endif %}>
+                        {{ p.id_producto }} - {{ p.nombre }}
+                    </option>
+                            {% endfor %}
+                </select>
+            </div>
+            <div class="acciones-form">
+                <button type="submit" class="btn">Actualizar</button>
+                <a href="{{ url_for('ventas') }}" class="btn-cancelar">Cancelar</a>
+            </div>
+        </form>
+        
+    </div>
+</body>
+</html>

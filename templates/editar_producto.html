@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Productos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+    <header class="navbar">
+        <h2>Editar Productos</h2>
+        <nav>
+            <a href="{{ url_for('inicio') }}" class="btn-nav">Inicio</a>
+            <a href="{{ url_for('productos') }}" class="btn-nav">Productos</a>
+        </nav>
+    </header>
+
+       <main class="contenedor-formulario">
+        <div class="tarjeta-formulario">
+            <h2>Modificar Información</h2>
+
+          <form action="" method="POST" class="formulario">
+            <div class="campo">
+                <label for="nombre">Nombre del Producto:</label>
+                <input type="text" id="nombre" name="nombre" value="{{ producto.nombre }}" required>
+            </div>
+            <div class="campo">
+                    <label for="categoria">Categoría:</label>
+                    <input type="text" id="categoria" name="categoria" value="{{ producto.categoria }}" required>
+                </div>
+
+                <div class="campo">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" id="cantidad" name="cantidad" value="{{ producto.cantidad }}" required>
+                </div>
+
+                <div class="campo">
+                    <label for="fecha_entrada">Fecha de Entrada:</label>
+                    <input type="date" id="fecha_entrada" name="fecha_entrada" value="{{ producto.fecha_entrada }}" required>
+                </div>
+
+                <div class="acciones-form">
+                    <button type="submit" class="btn">Actualizar</button>
+                    <a href="{{ url_for('productos') }}" class="btn-cancelar">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>

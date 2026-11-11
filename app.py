@@ -55,11 +55,10 @@ def editar_usuario(id):
     if request.method == 'POST':
         nombre = request.form['nombre']
         correo = request.form['correo']
-        identificacion = request.form['identificacion']
 
         cursor.execute(
-            "UPDATE usuario SET nombre=%s, correo=%s, identificacion=%s WHERE id_usuario=%s",
-            (nombre, correo, identificacion, id)
+            "UPDATE usuario SET nombre=%s, correo=%s WHERE id_usuario=%s",
+            (nombre, correo,  id)
         )
         conexion.commit()
         cursor.close()
@@ -136,15 +135,23 @@ def editar_producto(id):
 
     return render_template('editar_producto.html', producto=producto)
 
-@app.route('/productos/eliminar_producto/<int:id>')
+@app.route('/productos/eliminar/<int:id>')
 def eliminar_producto(id):
-    conexion = obtener_conexion()
-    cursor = conexion.cursor()
-    cursor.execute("DELETE FROM producto WHERE id_producto = %s", (id,))
-    conexion.commit()
-    cursor.close()
-    conexion.close()
-    return redirect(url_for('productos'))
+    try:
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
+        
+        cursor.execute("DELETE FROM producto WHERE id_producto = %s", (id,))
+        conexion.commit()
+        
+        cursor.close()
+        conexion.close()
+        return redirect(url_for('productos'))
+        
+    except mysql.connector.Error as err:
+        # Aquí atrapamos el error de la llave foránea y podemos avisarle al usuario
+        print(f"Error al eliminar: {err}")
+        return "No puedes eliminar este producto porque está asociado a una venta existente. Elimina primero la venta relacionada."
 
 # ----------------- CRUD VENTAS -----------------
 @app.route('/ventas', methods=['GET', 'POST'])
@@ -166,14 +173,13 @@ def ventas():
         conexion.commit()
         return redirect(url_for('ventas'))
 
-    # Obtener relaciones para selects
     cursor.execute("SELECT * FROM usuario")
     usuarios_select = cursor.fetchall()
 
     cursor.execute("SELECT * FROM producto")
     productos_select = cursor.fetchall()
 
-    # Consulta con JOIN para ver los nombres en la tabla
+
     query_ventas = """
         SELECT v.id_venta, v.fecha_venta, v.metodo_pago, v.total, 
         u.nombre AS cliente, p.nombre AS producto 
@@ -215,14 +221,13 @@ def editar_venta(id):
         conexion.close()
         return redirect(url_for('ventas'))
 
-    # Obtener relaciones para selects
     cursor.execute("SELECT * FROM usuario")
     usuarios_select = cursor.fetchall()
 
     cursor.execute("SELECT * FROM producto")
     productos_select = cursor.fetchall()
 
-    # Consulta para obtener la venta específica
+
     cursor.execute("SELECT * FROM venta WHERE id_venta = %s", (id,))
     venta = cursor.fetchone()
 

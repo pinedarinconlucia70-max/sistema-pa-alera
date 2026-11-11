@@ -16,6 +16,17 @@
     </header>
 
     <main class="contenedor-amplio">
+    <main class="contenedor-amplio">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alerta-flotante">
+                    ⚠️ {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
         <h2>Gestión de Productos</h2>
         
         

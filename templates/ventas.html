@@ -37,7 +37,7 @@
                 <input type="number" id="total" name="total" required>
             </div>
 
-            <!-- FK Cliente Dinámico -->
+      
             <div class="campo">
                 <label for="id_usuario">Cliente (id_usuario - FK):</label>
                 <select id="id_usuario" name="id_usuario" required>
@@ -48,7 +48,7 @@
                 </select>
             </div>
 
-            <!-- FK Producto Dinámico -->
+        
             <div class="campo">
                 <label for="id_producto">Producto (id_producto - FK):</label>
                 <select id="id_producto" name="id_producto" required>
@@ -86,8 +86,8 @@
                     <td>{{ v.cliente }}</td>
                     <td>{{ v.producto }}</td>
                     <td>
-                        <a href="/ventas/eliminar/{{ v.id_venta }}" onclick="return confirm('¿Eliminar esta venta?')" class="btn-eliminar">Eliminar</a>
-                        <a href="/ventas/editar/{{ v.id_venta }}" class="btn-editar">Editar</a>
+                        <a href="{{ url_for('eliminar_venta', id=v.id_venta) }}" onclick="return confirm('¿Eliminar esta venta?')" class="btn-eliminar">Eliminar</a>
+                        <a href="{{ url_for('editar_venta', id=v.id_venta) }}" class="btn-editar">Editar</a>
                     </td>
                 </tr>
                 {% endfor %}
