@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios - Pañalera</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <h2>Pañalera - Usuarios</h2>
+        <nav>
+            <a href="{{ url_for('inicio') }}" class="btn-nav">Inicio</a>
+        </nav>
+    </header>
+
+    <main class="contenedor-amplio">
+        <h2>Gestión de Usuarios</h2>
+        
+        
+        <form action="" method="POST" class="formulario">
+            <div class="campo">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej. Sara" required>
+            </div>
+            <div class="campo">
+                <label for="correo">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" placeholder="sara@gamil.com" required>
+            </div>
+            <div class="campo">
+                <label for="identificacion">Identificación:</label>
+                <input type="text" id="identificacion" name="identificacion" placeholder="19337160" required>
+            </div>
+            <button type="submit" class="btn">Guardar Usuario</button>
+        </form>
+
+        <hr style="margin: 2rem 0; border: 0; border-top: 1px solid #ddd;">
+
+        <h3>Usuarios Guardados</h3>
+        <table class="tabla-datos">
+            <thead>
+                <tr>
+                    <th>ID Usuario</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Identificación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for u in usuarios %}
+                <tr>
+                    <td>{{ u.id_usuario }}</td>
+                    <td>{{ u.nombre }}</td>
+                    <td>{{ u.correo }}</td>
+                    <td>{{ u.identificacion }}</td>
+                    <td>
+                        <a href="{{ url_for('eliminar_usuario', id=u.id_usuario) }}" onclick="return confirm('¿Eliminar este usuario?')" class="btn-eliminar">Eliminar</a>
+                        <a href="{{ url_for('editar_usuario', id=u.id_usuario) }}" class="btn-editar">Editar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Pañalera</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <h2>🍼 Pañalera </h2>
+        <nav>
+            <a href="{{ url_for('inicio') }}" class="btn-nav ">Inicio</a>
+
+        </nav>
+    </header>
+
+    <main class="contenedor-dashboard">
+        
+        <div class="banner-bienvenida">
+            <h1>Panel de Control Principal</h1>
+            <p>Bienvenida al sistema de gestión de la pañalera. Aquí tienes un resumen general del estado actual.</p>
+        </div>
+
+        <div class="grid-tarjetas">
+            <div class="tarjeta-metrica">
+                <div class="info-metrica">
+                    <h3>Total Usuarios</h3>
+                    <p class="numero">{{ u }}</p>
+                </div>
+                <a href="{{ url_for('usuarios') }}" class="enlace-tarjeta">Gestionar &rarr;</a>
+            </div>
+
+            <div class="tarjeta-metrica">
+                <div class="info-metrica">
+                    <h3>Productos en Stock</h3>
+                    <p class="numero">{{ p }}</p>
+                </div>
+                <a href="{{ url_for('productos') }}" class="enlace-tarjeta">Ver Inventario &rarr;</a>
+            </div>
+
+            <div class="tarjeta-metrica">
+                <div class="info-metrica">
+                    <h3>Ventas Registradas</h3>
+                    <p class="numero">{{ v }}</p>
+                </div>
+                <a href="{{ url_for('ventas') }}" class="enlace-tarjeta">Registrar Venta &rarr;</a>
+            </div>
+        </div>
+
+    
+        <section class="seccion-accesos">
+            <h3>Accesos Directos</h3>
+            <div class="botones-rapidos">
+                <a href="{{ url_for('usuarios') }}" class="btn-accion">➕ Nuevo Usuario</a>
+                <a href="{{ url_for('productos') }}" class="btn-accion">📦 Agregar Producto</a>
+                <a href="{{ url_for('ventas') }}" class="btn-accion">🛒 Nueva Venta</a>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
